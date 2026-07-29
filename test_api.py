@@ -7,10 +7,21 @@ url = "https://www.givefood.org.uk/api/2/locations/"
 response = requests.get(url)
 data = response.json()
 
-# See what one food bank looks like
-print(data[0])
-print(f"\nTotal food banks: {len(data)}")
+print(f"Total locations: {len(data)}")
 
-# Convert to a table
-df = pd.DataFrame(data)
-print(df[['name', 'postcode', 'country', 'network']].head(10))
+# Fix: extract nested fields correctly
+rows = []
+for item in data:
+    rows.append({
+        "name": item.get("name", ""),
+        "postcode": item.get("postcode", ""),
+        "network": item["foodbank"].get("network", ""),
+        "foodbank_name": item["foodbank"].get("name", ""),
+        "lat_lng": item.get("lat_lng", ""),
+        "address": item.get("address", "").replace("\r\n", ", ").replace("\n", ", ")
+    })
+
+df = pd.DataFrame(rows)
+print(df.head(10))
+print(f"\nNetworks breakdown:")
+print(df["network"].value_counts())
