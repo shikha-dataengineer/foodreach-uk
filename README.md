@@ -15,7 +15,7 @@ steps for vulnerable people in crisis.
 No phone calls. No referral codes. No waiting.
 
 ## Live Tool
-👉 [crisisconnect-uk.streamlit.app](https://foodreach-uk-efgozizx97eqfmvonwqqwm.streamlit.app/))
+👉 [https://foodreach-uk-efgozizx97eqfmvonwqqwm.streamlit.app/]
 
 ## Who It Helps
 - Elderly people who cannot travel
